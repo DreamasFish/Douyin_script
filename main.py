@@ -159,7 +159,7 @@ def run_loop(total=30):
 
     for i in range(total):
         print(f"\n========== 第 {i + 1} 条视频 ==========")
-        time.sleep(2)
+        time.sleep(1.5)
         capture_screen()
 
         # 先用图像判断直播
@@ -170,7 +170,7 @@ def run_loop(total=30):
 
         if is_beautiful_baidu("screen.png", token):
             print("✅ 是美女，停留观看")
-            time.sleep(3 + random.uniform(1, 3))
+            time.sleep(3 + random.uniform(1, 2))
             double_tap()
             share_to_friend()
             swipe_up()
