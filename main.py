@@ -14,7 +14,7 @@ load_dotenv()
 API_KEY = os.getenv("BAIDU_API_KEY")
 SECRET_KEY = os.getenv("BAIDU_SECRET_KEY")
 SCORE = 70
-NUM_VIDEO = 10
+NUM_VIDEO = 100
 
 
 # --- ADB 工具 ---
