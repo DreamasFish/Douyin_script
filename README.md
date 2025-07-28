@@ -31,7 +31,6 @@
 ```
 your_project/
 ├── douyin.py          # 用于刷抖音的主程序
-├── kuaishoujisuban.py # 用于刷快手极速版的主程序（不咋看，还未完善）
 ├── .env               # 环境变量（存放 API 密钥，⚠️ 不可上传）
 ├── templates/         # 存放直播识别模板图像
 └── README.md          # 项目说明
