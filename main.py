@@ -32,6 +32,11 @@ def launch_douyin():
     time.sleep(5)
 
 
+def close_douyin():
+    print("今日任务完成...正在关闭抖音")
+    adb_shell("am force-stop com.ss.android.ugc.aweme")
+
+
 def capture_screen(filename="screen.png"):
     adb_shell("screencap -p /sdcard/screen.png")
     adb_pull("/sdcard/screen.png", filename)
@@ -95,11 +100,10 @@ def double_tap(x=None, y=None):
     模拟双击屏幕，默认在中间
     """
     if x is None or y is None:
-        x, y = 600, 1400  # 默认屏幕中下部（可调整）
+        x, y = random.randint(500, 700), random.randint(1500, 1600)  # 默认屏幕中下部（可调整）
 
     print(f"💗 模拟双击 ({x}, {y}) 点赞")
     adb_shell(f"input tap {x} {y}")
-    time.sleep(0.1)
     adb_shell(f"input tap {x} {y}")
 
 
@@ -159,7 +163,6 @@ def run_loop(total=30):
 
     for i in range(total):
         print(f"\n========== 第 {i + 1} 条视频 ==========")
-        time.sleep(1.5)
         capture_screen()
 
         # 先用图像判断直播
@@ -168,9 +171,16 @@ def run_loop(total=30):
             swipe_up()
             continue
 
-        if is_beautiful_baidu("screen.png", token):
+        is_beauty = False
+        for t in range(3):
+            capture_screen()
+            if is_beautiful_baidu("screen.png", token):
+                is_beauty = True
+                break
+
+        if is_beauty:
             print("✅ 是美女，停留观看")
-            time.sleep(3 + random.uniform(1, 2))
+            time.sleep(random.uniform(1, 2))
             double_tap()
             share_to_friend()
             swipe_up()
@@ -183,3 +193,4 @@ def run_loop(total=30):
 if __name__ == "__main__":
     launch_douyin()
     run_loop(NUM_VIDEO)
+    close_douyin()
